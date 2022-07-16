@@ -1,0 +1,68 @@
+<template>
+  <div class="container">
+    <div class="card__code">
+      <h1 class="card__code__title">FLEXBOX FROGGY</h1>
+      <div class="card__code__instructions">
+        <p>
+          Bem vindo ao Flexbox Froggy! O objetivo do jogo é salvar o sapo e seus
+          amigos ao escrever códigos em CSS utilizando Flexbox! Para jogar,
+          lembre que você deve usar as seguintes propriedades:
+        </p>
+        <ul>
+          <li><code>justify-content:</code> alinha itens horizontalmente</li>
+          <li><code>align-items:</code> alinha itens verticalmente</li>
+          <li><code>align-content:</code></li>
+        </ul>
+      </div>
+
+      <CodeContainer/>
+ 
+    </div>
+    <div class="card__frog"><Frog /></div>
+  </div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "@vue/runtime-core";
+import { default as Frog } from "../components/Frog.vue";
+import CodeContainer from "../components/CodeContainer.vue";
+
+export default defineComponent({
+  components: { Frog, CodeContainer },
+});
+</script>
+
+<style scoped>
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  height: 100vh;
+  font-family: "Montserrat";
+}
+.card__code {
+  background-color: #312f2f;
+  color: white;
+  padding: 32px;
+}
+.card__code__instructions {
+  margin-top: 16px;
+}
+.card__frog {
+  background-color: #bf98a0;
+}
+.card__code__title {
+  font-family: "Evogria";
+}
+p {
+  text-align: justify;
+}
+code {
+  background-color: rgb(191, 152, 160, 0.9);
+  color: white;
+  font-weight: bold;
+}
+ul {
+  margin-top: 16px;
+}
+
+</style>

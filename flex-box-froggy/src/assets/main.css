@@ -1,0 +1,13 @@
+@import "./base.css";
+
+@font-face {
+  font-family: "Evogria";
+  src: local("evogria"),
+   url(./fonts/evogria/Evogria.otf) format("truetype");
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: local("Montserrat"),
+   url(./fonts/Montserrat/Montserrat-VariableFont_wght.ttf) format("truetype");
+}
