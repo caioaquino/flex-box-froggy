@@ -1,3 +1,4 @@
+import { removeSpecialCharacters } from "@/utils/removeSpecialCharacters";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
@@ -5,6 +6,8 @@ interface Styles {
   "flex-direction"?: String;
   "justify-content"?: String;
   "align-items"?: String;
+  "align-content"?: String;
+  "flex-wrap"?: String;
 }
 
 interface Level {
@@ -58,6 +61,30 @@ const levels: Level[] = [
     frogs: 1,
     completed: false,
   },
+  {
+    id: 6,
+    position: { "justify-content": "space-around", "align-items": "end" },
+    counter: 2,
+    frogs: 3,
+    completed: false,
+  },
+  {
+    id: 7,
+    position: { "flex-direction": "column" },
+    counter: 1,
+    frogs: 3,
+    completed: false,
+  },
+  {
+    id: 8,
+    position: {
+      "flex-direction": "column",
+      "justify-content": "space-between",
+    },
+    counter: 2,
+    frogs: 3,
+    completed: false,
+  },
 ];
 
 export const LevelsStore = defineStore({
@@ -68,17 +95,22 @@ export const LevelsStore = defineStore({
   }),
   getters: {
     getPosition: (state) => state.levels[state.currentLevel].position,
+    getPositionFormatted: (state) =>
+      removeSpecialCharacters(state.levels[state.currentLevel].position),
     getCurrentLevel: (state) => state.levels[state.currentLevel],
+    getCurrentLevelCompleted: (state) =>
+      state.levels[state.currentLevel].completed,
   },
   actions: {
     nextLevel() {
-      if (this.currentLevel < levels.length - 1) this.currentLevel++;
+      if (this.currentLevel < levels.length - 1) {
+        this.currentLevel++;
+      }
     },
     previousLevel() {
       if (this.currentLevel > 0) this.currentLevel--;
     },
     verifyLevel(valueLevel: Level) {
-      console.log(valueLevel)
       this.levels[valueLevel.id].completed = true;
     },
   },

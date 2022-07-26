@@ -27,24 +27,14 @@ export default {
       levelsStore.nextLevel();
       positionStore.resetPosition();
       if (levelsStore.getCurrentLevel.completed) {
-        const value = JSON.stringify(levelsStore.getCurrentLevel.position)
-          .replace("{", "")
-          .replace("}", "")
-          .replaceAll('"', "");
-
-        positionStore.savePosition(value);
+        positionStore.savePosition(levelsStore.getPositionFormatted);
       }
     }
     function handlePreviousLevel() {
       levelsStore.previousLevel();
       positionStore.resetPosition();
       if (levelsStore.getCurrentLevel.completed) {
-        const value = JSON.stringify(levelsStore.getCurrentLevel.position)
-          .replace("{", "")
-          .replace("}", "")
-          .replaceAll('"', "");
-
-        positionStore.savePosition(value);
+        positionStore.savePosition(levelsStore.getPositionFormatted);
       }
     }
     return { levels, currentLevel, handleNextLevel, handlePreviousLevel };

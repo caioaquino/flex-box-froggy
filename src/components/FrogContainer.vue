@@ -10,7 +10,7 @@
         <Frog />
       </div>
     </div>
-    <div class="water__lily" :style="position">
+    <div class="water__lily" :style="waterLilyPosition">
       <img
         v-for="index in currentLevel.frogs"
         :key="index"
@@ -38,7 +38,7 @@ export default defineComponent({
     const levelsStore = LevelsStore();
     const positionStore = PositionStore();
     const currentLevel = computed(() => levelsStore.getCurrentLevel);
-    const position: any = computed(() => levelsStore.getPosition);
+    const waterLilyPosition: any = computed(() => levelsStore.getPosition);
     const frogPosition = computed(() => positionStore.getPosition);
 
     watch(
@@ -51,7 +51,7 @@ export default defineComponent({
     );
 
     return {
-      position,
+      waterLilyPosition,
       currentLevel,
       frogPosition,
       referenceFrog,
@@ -80,11 +80,12 @@ export default defineComponent({
   right: 0;
   left: 0;
   z-index: 9;
-  padding: 8px 16px;
+  padding: 0 16px;
   gap: 16px;
 }
 .frog__item {
   width: 128px;
+  height: 128px;
   display: flex;
   flex-direction: row;
   justify-content: center;

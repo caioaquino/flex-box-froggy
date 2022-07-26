@@ -12,9 +12,11 @@
           lembre que você deve usar as seguintes propriedades:
         </p>
         <ul>
-          <li><code>justify-content:</code> alinha itens horizontalmente</li>
+          <li>
+            <code>justify-content:</code> determina o espaçamento entre os itens
+          </li>
           <li><code>align-items:</code> alinha itens verticalmente</li>
-          <li><code>align-content:</code></li>
+          <li><code>flex-direction:</code> define a direção dos itens</li>
         </ul>
       </div>
 

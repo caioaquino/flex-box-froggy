@@ -7,7 +7,11 @@
       <div class="card__code__container__line__code">
         <code>#container {</code>
         <code>display: flex;</code>
-        <textarea :rows="levels[currentLevel].counter" v-model="position" />
+        <textarea
+          :rows="levels[currentLevel].counter"
+          v-model="position"
+          :readonly="levels[currentLevel].completed"
+        />
         <code>}</code>
       </div>
       <div class="actions">
@@ -17,7 +21,7 @@
           v-if="!current.completed"
         >
           PRÓXIMO NÍVEL
-        </button> 
+        </button>
         <button class="success__button" v-else>NÍVEL CONCLUÍDO!</button>
       </div>
     </div>
@@ -25,12 +29,14 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent, ref } from "@vue/runtime-core";
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
 import { LevelsStore } from "../stores/levels";
 import { PositionStore } from "../stores/position";
 import { useSnackbar } from "vue3-snackbar";
+import { is } from "@babel/types";
+import { isPositionEqual } from "@/utils/isPositionEqual";
 
 export default defineComponent({
   setup() {
@@ -38,39 +44,34 @@ export default defineComponent({
     const positionStore = PositionStore();
     const { position } = storeToRefs(positionStore);
     const { levels, currentLevel } = storeToRefs(levelsStore);
-
+    const disabled = ref(false);
     const snackbar = useSnackbar();
     const current = computed(() => levelsStore.getCurrentLevel);
 
     function handleNextLevel() {
-      const referencesLily = positionStore.referenceLily;
-      const referencesFrog = positionStore.referenceFrog;
-
-      for (var j = 0; j < referencesLily.length; j++) {
-        if (!current.value.completed) {
-          if (
-            referencesLily[j].getBoundingClientRect().y !==
-              referencesFrog[j].getBoundingClientRect().y - 8 ||
-            referencesLily[j].getBoundingClientRect().x !==
-              referencesFrog[j].getBoundingClientRect().x
-          ) {
-            snackbar.add({
-              type: "error",
-              text: "A posição do sapo está incorreta!",
-            });
-            return;
-          }
+      const referencesLily: any = positionStore.referenceLily;
+      const referencesFrog: any = positionStore.referenceFrog;
+      if (isPositionEqual(referencesLily, referencesFrog)) {
+        snackbar.add({
+          type: "success",
+          text: `Parabéns! Você concluiu o nível ${currentLevel.value + 1}`,
+        });
+        levelsStore.verifyLevel(current.value);
+        levelsStore.nextLevel();
+        positionStore.resetPosition();
+        if (levelsStore.getCurrentLevel.completed) {
+          positionStore.savePosition(levelsStore.getPositionFormatted);
         }
+      } else {
+        disabled.value = true;
+        setTimeout(() => {
+          disabled.value = false;
+        }, 1000);
+        snackbar.add({
+          type: "error",
+          text: "A posição do sapo está incorreta!",
+        });
       }
-
-      snackbar.add({
-        type: "success",
-        text: `Parabéns! Você concluiu o nível ${currentLevel.value + 1}`,
-      });
-      console.log("oi");
-      levelsStore.verifyLevel(current.value);
-      levelsStore.nextLevel();
-      positionStore.resetPosition();
     }
 
     return {
@@ -79,6 +80,7 @@ export default defineComponent({
       handleNextLevel,
       position,
       current,
+      disabled,
     };
   },
 });
@@ -138,6 +140,7 @@ textarea {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
 }
 .actions .next__level__button:focus {
   border: 1px solid #895c6e;
@@ -150,6 +153,7 @@ textarea {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .shake {
