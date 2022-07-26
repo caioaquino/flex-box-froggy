@@ -78,6 +78,7 @@ export const LevelsStore = defineStore({
       if (this.currentLevel > 0) this.currentLevel--;
     },
     verifyLevel(valueLevel: Level) {
+      console.log(valueLevel)
       this.levels[valueLevel.id].completed = true;
     },
   },

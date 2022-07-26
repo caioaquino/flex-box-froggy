@@ -26,10 +26,26 @@ export default {
     function handleNextLevel() {
       levelsStore.nextLevel();
       positionStore.resetPosition();
+      if (levelsStore.getCurrentLevel.completed) {
+        const value = JSON.stringify(levelsStore.getCurrentLevel.position)
+          .replace("{", "")
+          .replace("}", "")
+          .replaceAll('"', "");
+
+        positionStore.savePosition(value);
+      }
     }
     function handlePreviousLevel() {
       levelsStore.previousLevel();
       positionStore.resetPosition();
+      if (levelsStore.getCurrentLevel.completed) {
+        const value = JSON.stringify(levelsStore.getCurrentLevel.position)
+          .replace("{", "")
+          .replace("}", "")
+          .replaceAll('"', "");
+
+        positionStore.savePosition(value);
+      }
     }
     return { levels, currentLevel, handleNextLevel, handlePreviousLevel };
   },
