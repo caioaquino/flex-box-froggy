@@ -1,52 +1,26 @@
 # flex-box-froggy
 
-This template should help get you started developing with Vue 3 in Vite.
+O Flexbox Froggy é um jogo didático para aprender Flexbox.
 
-## Recommended IDE Setup
+O objetivo é posicionar os sapos nas vitórias-régias e concluir todos os níveis. Para isso, devem ser utilizadas as propriedades de flexbox *justify-content*, *flex-direction* e *align-items*.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+![alt text](./src/assets/example.png)
 
-## Type Support for `.vue` Imports in TS
+### Tecnologias utilizadas
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+O projeto foi construído utilizando o framework Vue.js na versão 3. Para gerenciamento de estado, utiliza-se o Pinia. 
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+### Executando o projeto
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+Inicialmente, deve-se instalar os pacotes rodando o seguinte comando:
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+Em seguida, executa-se o projeto utilizando o seguinte comando:
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
