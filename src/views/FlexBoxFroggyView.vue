@@ -7,9 +7,9 @@
       </div>
       <div class="card__code__instructions">
         <p>
-          Bem vindo ao Flexbox Froggy! O objetivo do jogo é salvar o sapo e seus
-          amigos ao escrever códigos em CSS utilizando Flexbox! Para jogar,
-          lembre que você deve usar as seguintes propriedades:
+          Bem vindo ao Flexbox Froggy! O objetivo do jogo é salvar os sapos ao
+          escrever códigos em CSS utilizando Flexbox! Para jogar, lembre que
+          você deve usar as seguintes propriedades:
         </p>
         <ul>
           <li>
