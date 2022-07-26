@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div class="card__code">
-      <h1 class="card__code__title">FLEXBOX FROGGY</h1>
+      <div class="card__code__header">
+        <h1 class="card__code__title">FLEXBOX FROGGY</h1>
+        <Level />
+      </div>
       <div class="card__code__instructions">
         <p>
           Bem vindo ao Flexbox Froggy! O objetivo do jogo é salvar o sapo e seus
@@ -15,20 +18,19 @@
         </ul>
       </div>
 
-      <CodeContainer/>
- 
+      <CodeContainer />
     </div>
-    <div class="card__frog"><Frog /></div>
+    <FrogContainer />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-import { default as Frog } from "../components/Frog.vue";
+import FrogContainer from "../components/FrogContainer.vue";
 import CodeContainer from "../components/CodeContainer.vue";
-
+import Level from "../components/Level.vue";
 export default defineComponent({
-  components: { Frog, CodeContainer },
+  components: { CodeContainer, FrogContainer, Level },
 });
 </script>
 
@@ -47,9 +49,7 @@ export default defineComponent({
 .card__code__instructions {
   margin-top: 16px;
 }
-.card__frog {
-  background-color: #bf98a0;
-}
+
 .card__code__title {
   font-family: "Evogria";
 }
@@ -65,4 +65,8 @@ ul {
   margin-top: 16px;
 }
 
+.card__code__header {
+  display: flex;
+  justify-content: space-between;
+}
 </style>
